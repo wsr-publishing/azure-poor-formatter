@@ -1,0 +1,148 @@
+{
+    "name": "poor-sql-formatter",
+    "displayName": "Poor SQL Formatter",
+    "description": "T-SQL Formatter & Beautifier",
+    "version": "0.1.0",
+    "publisher": "WSRPublishing",
+    "repository": "https://github.com/wsr-publishing/azure-poor-formatter",
+    "engines": {
+        "vscode": "^1.30.0",
+        "sqlops": "*"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:poorSql.format",
+        "onCommand:poorSql.obfuscate"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "poorSql.format",
+                "title": "Poor SQL: Format T-SQL"
+            },
+            {
+                "command": "poorSql.obfuscate",
+                "title": "Poor SQL: Obfuscate T-SQL"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Poor SQL configuration",
+            "properties": {
+                "poorSql.tabIndent": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Use tabs for indentation?"
+                },
+                "poorSql.numIndentSpaces": {
+                    "type": "integer",
+                    "default": 4,
+                    "description": "Number of spaces to use when indenting. Ignored if tabIndent is true."
+                },
+                "poorSql.maxLineWidth": {
+                    "type": "integer",
+                    "default": 999,
+                    "description": "Max characters per line."
+                },
+                "poorSql.statementBreaks": {
+                    "type": "integer",
+                    "default": 2,
+                    "description": "Number of line breaks between statements."
+                },
+                "poorSql.clauseBreaks": {
+                    "type": "integer",
+                    "default": 1,
+                    "description": "Number of line breaks between clauses within a statement."
+                },
+                "poorSql.expandCommaLists": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Expand comma-delimited lists onto new lines?"
+                },
+                "poorSql.trailingCommas": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Should commas be at the end of lines?"
+                },
+                "poorSql.spaceAfterExpandedComma": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should a space be added after commas?"
+                },
+                "poorSql.expandBooleanExpressions": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should boolean operators cause a linebreak?"
+                },
+                "poorSql.expandCaseStatements": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should WHEN and THEN expressions in a CASE statement cause a linebreak?"
+                },
+                "poorSql.expandBetweenConditions": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Should arguments of BETWEEN expressions cause linebreaks?"
+                },
+                "poorSql.expandInLists": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Should IN lists be split by linebreaks?"
+                },
+                "poorSql.breakJoinOnSections": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should the ON section of a JOIN clause cause a linebreak?"
+                },
+                "poorSql.uppercaseKeywords": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Should keywords be automatically uppercased?"
+                },
+                "poorSql.keywordStandardization": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Should less-common keywords be replaced with common alternatives? (Caution: only safe for T-SQL)"
+                },
+                "poorSql.obfuscate.randomizeKeywordCase": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Obfuscation: should the case of keywords be randomized?"
+                },
+                "poorSql.obfuscate.randomizeLineLengths": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Obfuscation: should line lengths be randomized?"
+                },
+                "poorSql.obfuscate.preserveComments": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Obfuscation: should comments be preserved?"
+                },
+                "poorSql.obfuscate.enableKeywordSubstitution": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Obfuscation: allow common keywords to be replaced with less common alternatives? (Caution: only safe for T-SQL)"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install && node ./node_modules/sqlops/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.11.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42",
+        "sqlops": "github:anthonydresser/sqlops-extension-sqlops"
+    },
+    "dependencies": {
+        "poor-mans-t-sql-formatter": "^1.6.10"
+    }
+}
