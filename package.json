@@ -2,7 +2,7 @@
 	"name": "poor-sql-formatter",
 	"displayName": "Poor SQL Formatter",
 	"description": "T-SQL Formatter & Beautifier",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"publisher": "WSRPublishing",
 	"repository": "https://github.com/wsr-publishing/azure-poor-formatter",
 	"engines": {
@@ -15,7 +15,7 @@
 	"activationEvents": [
 		"onCommand:poorSql.format",
 		"onCommand:poorSql.obfuscate",
-    "*",
+		"*",
 		"onLanguage:sql"
 	],
 	"main": "./extension",
